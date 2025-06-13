@@ -2,11 +2,6 @@ import serial
 import time
 
 def controlDrone(bit, port='/dev/ttyACM0', baudrate=9600):
-    """
-    Controls the drone via Arduino pin 10 using a binary input.
-    Bit 1 simulates a button press: sends '1' to Arduino via serial.
-    Bit 0 does nothing (idle).
-    """
     if bit not in (0, 1):
         print("Invalid input: only 0 or 1 allowed.")
         return
