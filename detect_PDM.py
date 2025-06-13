@@ -35,7 +35,6 @@ def detect_and_plot_PDM_real_time(duration=60, sampling_rate=5, duration_thresho
         while time.time() - start_time < duration:
             now = time.time()
 
-            # 每 symbol_check_interval 秒没有 bit 就插入 2
             if now - last_bit_time > symbol_check_interval:
                 #bits.append(2)
                 print(" No bit detected recently → Inserted 2")
@@ -57,8 +56,7 @@ def detect_and_plot_PDM_real_time(duration=60, sampling_rate=5, duration_thresho
                         #peak = max(y_data[-10:])
                         # dynamic_threshold = baseline + 0.35 * (peak - baseline)
                         baseline = 0.95 * baseline + 0.1 * val
-                        dynamic_threshold = baseline + 90  # offset 为经验常量，如 20 或 30
-
+                        dynamic_threshold = baseline + 90  # offset
                         threshold_line.set_xdata(x_data)
                         threshold_line.set_ydata([dynamic_threshold] * len(x_data))
 
@@ -101,6 +99,5 @@ def detect_and_plot_PDM_real_time(duration=60, sampling_rate=5, duration_thresho
         print(" Serial port closed.")
         return bits, timestamps, y_data
 
-# Example run
 if __name__ == "__main__":
     bits, ts, y = detect_and_plot_PDM_real_time(duration=10000, sampling_rate=5, duration_threshold=6, port='/dev/cu.usbmodem101')
