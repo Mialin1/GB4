@@ -7,14 +7,14 @@ def OOKmodulation(bit_train, port='/dev/cu.usbmodem1101', baudrate=9600,
     
     assert all(bit in [0, 1] for bit in bit_train), "Only 0 and 1 are allowed in bit_train"
 
-    print(f"🔄 Connecting to Arduino on {port}...")
+    print(f"Connecting to Arduino on {port}...")
     ser = serial.Serial(port, baudrate)
     time.sleep(2)  # Wait for Arduino to initialize
     print("Connection established.")
 
-    print("🚀 Starting OOK transmission...")
+    print("Starting OOK transmission...")
     for i, bit in enumerate(bit_train):
-        print(f"🔢 Transmitting bit {i+1}/{len(bit_train)}: {bit}")
+        print(f"Transmitting bit {i+1}/{len(bit_train)}: {bit}")
 
         if bit == 1:
             ser.write(b'1')  # Spray ON
