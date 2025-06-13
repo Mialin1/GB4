@@ -1,7 +1,6 @@
 import speech_recognition as sr
 import time
 import wave
-#from OOK_transmitter import OOKmodulation
 from PDM_transmitter import pulsemodulation
 import serial
 import serial
@@ -51,7 +50,6 @@ def listen_commands(mic_index=1, interval=14, port='/dev/cu.usbmodem101'):
                 print("Speak：")
                 audio = recognizer.listen(source)
 
-            # 保存录音以供调试
             with open("command.wav", "wb") as f:
                 f.write(audio.get_wav_data())
 
@@ -65,11 +63,10 @@ def listen_commands(mic_index=1, interval=14, port='/dev/cu.usbmodem101'):
                 if "go up" in text:
                     print(" Command：UP")
                     pulsemodulation([1], short_duration=0.2, long_duration=1.0, symbol_interval=5.0, port=port)
-                    # 例如调用：controlDrone(1)
+              
                 elif "go down" in text:
                     print("Command：DOWN")
                     pulsemodulation([0], short_duration=0.2, long_duration=1.0, symbol_interval=5.0, port=port)
-                    # 例如调用：controlDrone(1)
                 else:
                     print(" Undefined Command")
 
@@ -89,4 +86,3 @@ def listen_commands(mic_index=1, interval=14, port='/dev/cu.usbmodem101'):
 
 
 listen_commands(mic_index=1, interval=7, port='/dev/cu.usbmodem21301')
-#     # 例如：listen_commands(mic_index=1, interval=14, port='/dev/cu.usbmodem101')
