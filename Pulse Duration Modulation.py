@@ -8,14 +8,14 @@ def pulsemodulation(bit_train,
 
     assert all(bit in [0, 1] for bit in bit_train), "bit_train must only contain 0 and 1"
 
-    print(f"🔌 Connecting to Arduino on {port}...")
+    print(f"Connecting to Arduino on {port}...")
     ser = serial.Serial(port, baudrate)
     time.sleep(2)  # Wait for Arduino to initialize
     print("Connected.")
 
     print("Starting Pulse Duration Modulation...")
     for i, bit in enumerate(bit_train):
-        print(f"🔢 Bit {i+1}/{len(bit_train)}: {bit}")
+        print(f"Bit {i+1}/{len(bit_train)}: {bit}")
         if bit == 1:
             ser.write(b'1')
             time.sleep(long_duration)
@@ -30,7 +30,7 @@ def pulsemodulation(bit_train,
         time.sleep(max(0, symbol_interval))
 
     ser.close()
-    print("✅ Transmission complete.")
+    print("Transmission complete.")
 
 
 if __name__ == "__main__":
