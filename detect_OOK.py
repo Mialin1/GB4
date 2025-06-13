@@ -89,7 +89,7 @@ def detect_and_plot_OOK_real_time(duration=40, sampling_rate=10, symbol_interval
             time.sleep(1 / sampling_rate)
 
     except KeyboardInterrupt:
-        print("\n🛑 User interrupted.")
+        print("User interrupted.")
 
     finally:
         ser.close()
