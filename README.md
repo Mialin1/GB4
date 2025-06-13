@@ -1,1 +1,1 @@
-# GB4
+# GB4 Multi-modal Communications for Internet of Everything
